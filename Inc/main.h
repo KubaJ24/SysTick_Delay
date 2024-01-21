@@ -15,6 +15,7 @@
 #define LD2_OFF GPIOB->BSRR |= GPIO_BSRR_BR7;
 
 void LD2_GPIO_CONF(void);
+//void DELAY(uint32_t Delay_ms);
 
 void LD2_GPIO_CONF(void){
 	//GPIO PORT B CLOCK ENABLE
@@ -29,5 +30,13 @@ void LD2_GPIO_CONF(void){
 	//NO PULL UP, NO PULL DOWN
 	GPIOB->PUPDR &= ~(GPIO_PUPDR_PUPDR7);
 }
+
+/*void DELAY(uint32_t Delay_ms){
+    uint32_t StartTime = Tick;
+    while(Tick < (StartTime + Delay_ms))
+    {
+        // Just wait
+    }
+}*/
 
 #endif /* MAIN_H_ */

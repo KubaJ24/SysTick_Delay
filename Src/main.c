@@ -18,11 +18,34 @@
 
 #include "main.h"
 
+uint32_t Tick;
+
+void SysTick_Handler(void){
+	//INCREASE SYSTEM TIMER
+	Tick++;
+}
+
+void DELAY(uint32_t Delay_ms){
+    uint32_t StartTime = Tick;
+    while(Tick < (StartTime + Delay_ms))
+    {
+        // Just wait
+    }
+}
 
 int main(void)
 {
-    /* Loop forever */
-	while(1){
 
+	LD2_OFF;
+	LD2_GPIO_CONF();
+
+	SysTick_Config(16000000/1000);
+
+	while(1){
+		LD2_ON;
+		DELAY(500);
+
+		LD2_OFF;
+		DELAY(500);
 	}
 }
