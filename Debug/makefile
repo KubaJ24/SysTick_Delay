@@ -33,34 +33,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := Empty
+BUILD_ARTIFACT_NAME := SysTick_Delay
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-Empty.elf \
+SysTick_Delay.elf \
 
 MAP_FILES += \
-Empty.map \
+SysTick_Delay.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-Empty.list \
+SysTick_Delay.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: Empty.elf secondary-outputs
+main-build: SysTick_Delay.elf secondary-outputs
 
 # Tool invocations
-Empty.elf Empty.map: $(OBJS) $(USER_OBJS) C:\Users\ahadz\OneDrive\Pulpit\Projekty_2\STM32\Empty\ project\STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Empty.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\ahadz\OneDrive\Pulpit\Projekty_2\STM32\Empty project\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Empty.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+SysTick_Delay.elf SysTick_Delay.map: $(OBJS) $(USER_OBJS) C:\Users\ahadz\OneDrive\Pulpit\Projekty_2\STM32\SysTick_Delay\STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "SysTick_Delay.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\ahadz\OneDrive\Pulpit\Projekty_2\STM32\SysTick_Delay\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SysTick_Delay.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -69,14 +69,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Empty.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "Empty.list"
+SysTick_Delay.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "SysTick_Delay.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) Empty.elf Empty.list Empty.map default.size.stdout
+	-$(RM) SysTick_Delay.elf SysTick_Delay.list SysTick_Delay.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
